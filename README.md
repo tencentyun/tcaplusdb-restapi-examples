@@ -121,16 +121,16 @@ RESTful API 目前支持**19**个接口。
 |序号|接口名|接口说明|
 |---|---|---|
 | 1| Tcaplus.InsertRecord | Insert one record, return error if record exists |
-| 2| Tcaplus.BatchInsertRecords | Insert multi-record, non-atomic transaction, allow partial successful and partial failed |
+| 2| Tcaplus.BatchInsertRecords | Insert multi-record, non-atomic transaction, allow partial success and partial failure |
 | 3| Tcaplus.GetRecord | Get one record, return error if record does not exist |
 | 4| Tcaplus.BatchGetRecords | Get multi-record, non-atomic transaction, allow return partial records |
 | 5| Tcaplus.GetRecordByPartKey | Get multi-record with index of primary key (defined in proto file, tcaplusservice.tcaplus_index) |
 | 6| Tcaplus.UpdateRecord | Update one record, return error if record does not exist|
-| 7| Tcaplus.BatchUpdateRecords | Update multi-record, non-atomic transaction, allow partial successful and partial failed |
+| 7| Tcaplus.BatchUpdateRecords | Update multi-record, non-atomic transaction, allow partial success and partial failure |
 | 8| Tcaplus.ReplaceRecord | Replace one record, update record if exists, insert record if not exist |
-|9 | Tcaplus.BatchReplaceRecords | Replace multi-record, non-atomic transaction, allow partial successful and partial failed |
+|9 | Tcaplus.BatchReplaceRecords | Replace multi-record, non-atomic transaction, allow partial success and partial failure |
 | 10| Tcaplus.DeleteRecord | Delete one record with primary key, return error if not exist |
-| 11| Tcaplus.BatchDeleteRecords | Delete multi-record , non-atomic transaction, allow partial successful and partial failed |
+| 11| Tcaplus.BatchDeleteRecords | Delete multi-record , non-atomic transaction, allow partial success and partial failure |
 | 12| Tcaplus.DeleteRecordByPartKey | Delete batch records with index of primary key (defined in proto file,tcaplusservice.tcaplus_index), |
 | 13| Tcaplus.FieldGetRecord | Get partial fields of one record, according to `FieldPath` attribute to specify the partial fields' name |
 | 14| Tcaplus.BatchFieldGetRecords | Get partial fields of multi-record |

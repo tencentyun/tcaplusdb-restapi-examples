@@ -16,7 +16,7 @@ EOF
 
 #traverse all records of table, specify `Limit` attr to limit numbers of record of response
 #if table has massive data, each response size has a limit level (10M-level), if the size of records is over this limit
-# user should check the return flag `complte` to check whether the records have been traversed
+# user should check the return flag `complete` to check whether the records have been traversed
 # if `complete` flag is false, use for-loop to traverse the remaining records
 # best practice: combine `Limit` attr and `complete` flag to control number of records of each response and to check number of remaining records
 function traverse() {
