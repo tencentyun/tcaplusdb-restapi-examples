@@ -10,14 +10,14 @@ IDL_TYPE="protobuf"
 # 1->check version consistency between version in request and version in server side, if in-consistenty the request will return error
 # 2->do not check version consistency, the record version in server side will be overwritten by the version specified in request
 # 3->do not check version consistency, the record version in server side will be auto-incremented.
-CHECK_POLICY=3
+CHECK_POLICY=1
 
 #optional, control the response type, default: 2
 # 0 -> Not return the record data  if without any errors
 # 1 -> Return the record data that contains record before updated and record after updated
 # 2 -> Return the record data after updated
 # 3 -> Return the record data before updated
-result_flag=2
+result_flag=1
 
 ################End TcaplusDB Common Configs###############
 
@@ -34,9 +34,9 @@ zone_id=1
 
 #required, TcaplusDB table name, replace your table name
 table_name="game_players"
-
+list_table_name="tb_online_list"
 #required TcaplusDB cluster access password, refer to https://cloud.tencent.com/document/product/596/31652, replace your password
-passwd="Tcaplus@2020"
+passwd="xxx"
 
 #caculate the md5 value of password
 md5_passwd=$(echo -n $passwd | md5sum | cut -d ' ' -f1)
@@ -50,7 +50,7 @@ md5_passwd=$(echo -n $passwd | md5sum | cut -d ' ' -f1)
 # Tcaplus.GetRecord: Get one record, return error if record does not exist
 # Tcaplus.BatchGetRecords: Get multi-record, non-atomic transaction, allow return partial records
 # Tcaplus.GetRecordByPartKey: Get multi-record with index of primary key (defined in proto file, tcaplusservice.tcaplus_index)
-# Tcaplus.UpdateRecord: Update one record, return error if record does not exist
+# Tcaplus.UpdateRecord; Update one record, return error if record does not exist
 # Tcaplus.BatchUpdateRecords: Update multi-record, non-atomic transaction, allow partial successful and partial failed
 # Tcaplus.ReplaceRecord: Replace one record, update record if exists, insert record if not exist
 # Tcaplus.BatchReplaceRecords:  Replace multi-record, non-atomic transaction, allow partial successful and partial failed
@@ -78,3 +78,19 @@ function build_headers(){
         -H "x-tcaplus-idl-type: ${IDL_TYPE}"
     )
 }
+function build_list_headers(){
+    headers=(
+        -H "x-tcaplus-target: ${1}"
+        -H "x-tcaplus-app-id: ${app_id}"
+        -H "x-tcaplus-zone-id: ${zone_id}"
+        -H "x-tcaplus-protocol-version: ${PROTO_VERSION}"
+        -H "x-tcaplus-table-name: ${list_table_name}"
+        -H "x-tcaplus-pwd-md5: ${md5_passwd}"
+        -H "x-tcaplus-result-flag: ${result_flag}"
+        -H "x-tcaplus-version: ${TCAPLUS_VERSION}"
+        -H "x-tcaplus-data-version-check: ${CHECK_POLICY}"
+        -H "x-tcaplus-idl-type: ${IDL_TYPE}"
+    )
+}
+
+
